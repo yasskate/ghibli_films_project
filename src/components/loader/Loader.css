@@ -1,0 +1,8 @@
+.loader-container > img {
+  display: block;
+  margin: auto;
+}
+
+.loader-container > h1 {
+  text-align: center;
+}
