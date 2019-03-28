@@ -1,16 +1,8 @@
-header {
-  display: flex;
+.main {
+  position: relative;
 }
 
-.main-header {
-  background: #0596d8;
-  box-shadow: 1px 2px 3px #ccc;
-  color: white;
-  display: flex;
-  flex-flow: row nowrap;
-  padding: 10px;
-}
+.container {
+  margin: 20px 60px;
 
-.main-header-content {
-  flex: 1 0 auto;
 }

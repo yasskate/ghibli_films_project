@@ -1,13 +1,15 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { getFilms } from '../state/actions/index';
-import { loader as Loader } from './loader/Loader';
+import Film from './film/Film';
+import { Loader } from './loader/Loader';
+import { Header } from './header/Header';
 import './App.css';
 
 class App extends PureComponent {
   renderFilms = () => {
     if (this.props.filmsList) {
-      return <h1>React App</h1>;
+      return <Film />;
     }
 
     this.props.getFilms();
@@ -16,13 +18,9 @@ class App extends PureComponent {
 
   render = () => {
     return (
-      <div className="App">
-        <header class="main-header">
-          <div class="main-header-content">
-            <h1>Ghibli Films</h1>
-          </div>
-        </header>
-        {this.renderFilms()}
+      <div className="main">
+        <Header />
+        <div className="container">{this.renderFilms()}</div>
       </div>
     );
   };
@@ -32,6 +30,7 @@ const mapStateToProps = state => {
   const {
     films: { filmsList }
   } = state;
+
   return {
     filmsList
   };
