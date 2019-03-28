@@ -1,0 +1,7 @@
+.film-container {
+  background-color: rgb(218, 216, 216);
+  padding: 15px 20px;
+  height: 20vw;
+  width: 25vw;
+  box-shadow: 1px 2px 3px #ccc;
+}
