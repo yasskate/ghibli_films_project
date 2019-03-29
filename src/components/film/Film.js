@@ -19,7 +19,7 @@ class Film extends PureComponent {
     this.splitEvery(3).map(filmsChunk => (
       <div className="columns is-full-mobile">
         {filmsChunk.map(film => (
-          <article className="column article-container is-paddingless">
+          <article className="column article-container">
             <div className="film-container message is-primary">
               <div className="message-header">
                 <h3 className="has-text-weight-bold is-size-3">{film.title}</h3>
@@ -38,7 +38,7 @@ class Film extends PureComponent {
 
   render = () => {
     return (
-      <section className="section is-mobile is-paddingless">{this.renderFilms()}</section>
+      <section className="section is-mobile">{this.renderFilms()}</section>
     );
   };
 }
