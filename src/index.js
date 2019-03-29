@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './state/index';
-import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import 'bulma/css/bulma.css';
+import './index.css';
 
 const rootElement = document.getElementById('root');
 
