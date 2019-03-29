@@ -1,13 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { getFilms } from '../state/actions/index';
-import Film from './film/Film';
-import { Loader } from './loader/Loader';
-import { Header } from './header/Header';
-import './App.css';
+import Film, { Loader, Header, SearchBar } from './index';
 
 class App extends PureComponent {
-  renderFilms = () => {
+  renderFilmComponent = () => {
     if (this.props.filmsList) {
       return <Film />;
     }
@@ -18,9 +15,10 @@ class App extends PureComponent {
 
   render = () => {
     return (
-      <div className="main">
+      <div className="container-fluid is-full">
         <Header />
-        <div className="container">{this.renderFilms()}</div>
+        <SearchBar />
+        {this.renderFilmComponent()}
       </div>
     );
   };
