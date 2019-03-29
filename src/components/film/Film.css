@@ -1,7 +1,24 @@
+.article-container {
+  margin: 15px 0px;
+}
+
 .film-container {
-  background-color: rgb(218, 216, 216);
-  padding: 15px 20px;
-  height: 20vw;
-  width: 25vw;
-  box-shadow: 1px 2px 3px #ccc;
+  height: 100%;
+  margin: 20px 20px;
+  box-shadow: 1px 10px 5px #ccc;
+}
+
+.film-container:hover {
+  box-shadow: 3px 25px 15px rgba(0, 0, 0, 0.15);
+  transform: translate3D(0, -4px, 0);
+}
+
+.film-details-container {
+  padding: 20px 30px;
+}
+
+.film-description {
+  margin: 20px 0px 10px;
+  text-align: justify;
+  text-justify: inter-word;
 }

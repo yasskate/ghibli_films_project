@@ -3,23 +3,42 @@ import { connect } from 'react-redux';
 import './Film.css';
 
 class Film extends PureComponent {
+  splitEvery = indexToSplit => {
+    const { filmsList } = this.props;
+    return filmsList.reduce((result, item, index) => {
+      if (index % indexToSplit === 0) {
+        result.push([]);
+      }
+
+      result[Math.floor(index / indexToSplit)].push(item);
+      return result;
+    }, []);
+  };
+
+  renderFilms = () =>
+    this.splitEvery(3).map(filmsChunk => (
+      <div className="columns is-full-mobile">
+        {filmsChunk.map(film => (
+          <article className="column article-container is-paddingless">
+            <div className="film-container message is-primary">
+              <div className="message-header">
+                <h3 className="has-text-weight-bold is-size-3">{film.title}</h3>
+                <p>({film.release_date})</p>
+              </div>
+              <div className="film-details-container message-doby">
+                <h2>Director: {film.director}</h2>
+                <h2>Producer: {film.producer}</h2>
+                <p className="film-description">{film.description}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    ));
+
   render = () => {
     return (
-      <div className="film-container">
-        <div className="film-details-container">
-          <h1>Castle in the Sky</h1>
-          <h3>(1999)</h3>
-          <h2>Director: Hayao Miyazaki</h2>
-          <h2>Productor: Isao Takahata</h2>
-          <p>
-            Nisi est veniam ipsum nisi incididunt pariatur labore magna fugiat.
-            Sit nisi elit cupidatat ea velit consectetur esse id dolor.
-            Excepteur amet aliquip velit ullamco aute. Adipisicing ad cillum
-            laborum nisi cupidatat ex nostrud officia qui incididunt tempor in
-            in id. Do occaecat enim aliquip anim aliquip consequat aute magna.
-          </p>
-        </div>
-      </div>
+      <section className="section is-mobile is-paddingless">{this.renderFilms()}</section>
     );
   };
 }
