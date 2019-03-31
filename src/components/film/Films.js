@@ -1,11 +1,23 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import './Film.css';
+import './Films.css';
 
-class Film extends PureComponent {
-  splitEvery = indexToSplit => {
-    const { filmsList } = this.props;
-    return filmsList.reduce((result, item, index) => {
+class Films extends PureComponent {
+  state = {
+    filmsArray: []
+  };
+
+  componentDidMount = () => {
+    const { matchedFilms, filmsList } = this.props;
+    this.setState({
+      filmsArray: matchedFilms ? matchedFilms : filmsList
+    });
+  };
+
+  splitFilms = indexToSplit => {
+    const { filmsArray } = this.state;
+
+    return filmsArray.reduce((result, item, index) => {
       if (index % indexToSplit === 0) {
         result.push([]);
       }
@@ -15,11 +27,22 @@ class Film extends PureComponent {
     }, []);
   };
 
-  renderFilms = () =>
-    this.splitEvery(3).map(filmsChunk => (
+  renderNoCoincidencesMessage = () => {
+    return (
+      <div className="loader-container">
+        <img src="https://i.imgur.com/h5zBDCH.gif"
+        alt="Totoro didn't find films"
+        />
+        <h1 className="title">There are no matched films</h1>
+      </div>
+    );
+  }
+
+  renderFilmsChunks = () =>
+    this.splitFilms(3).map(filmsChunk => (
       <div className="columns is-full-mobile">
         {filmsChunk.map(film => (
-          <article className="column article-container">
+          <article className="column article-container is-one-third">
             <div className="film-container message is-primary">
               <div className="message-header">
                 <h3 className="has-text-weight-bold is-size-3">{film.title}</h3>
@@ -36,6 +59,14 @@ class Film extends PureComponent {
       </div>
     ));
 
+  renderFilms = () => {
+    if (this.state.filmsArray.length > 0) {
+      return this.renderFilmsChunks();
+    }
+
+    return this.renderNoCoincidencesMessage();
+  };
+
   render = () => {
     return (
       <section className="section is-mobile">{this.renderFilms()}</section>
@@ -45,12 +76,13 @@ class Film extends PureComponent {
 
 const mapStateToProps = state => {
   const {
-    films: { filmsList }
+    films: { filmsList, matchedFilms }
   } = state;
 
   return {
-    filmsList
+    filmsList,
+    matchedFilms
   };
 };
 
-export default connect(mapStateToProps)(Film);
+export default connect(mapStateToProps)(Films);
