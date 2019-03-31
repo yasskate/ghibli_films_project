@@ -1,1 +1,3 @@
 export const SET_FILMS_LIST = 'SET_FILMS_LIST';
+export const SET_MATCHED_FILMS = 'SET_MATCHED_FILMS';
+export const IS_LOADING = 'IS_LOADING';
