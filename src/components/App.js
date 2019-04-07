@@ -1,23 +1,33 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { getFilms } from '../state/actions/index';
-import Film, { Loader, Header, SearchBar } from './index';
+import { Films, Loader, Header, SearchBar } from './index';
 
-class App extends PureComponent {
+export class App extends PureComponent {
+  static defaultProps = {
+    isLoading: true
+  };
+
+  componentDidMount = () => {
+    this.props.getFilms();
+  };
+
   renderFilmComponent = () => {
-    if (this.props.filmsList) {
-      return <Film />;
+    const { isLoading } = this.props;
+
+    if (isLoading) {
+      return <Loader />;
     }
 
-    this.props.getFilms();
-    return <Loader />;
+    return <Films />;
   };
 
   render = () => {
+    const { filmsList } = this.props;
     return (
       <div className="container-fluid is-full">
         <Header />
-        <SearchBar />
+        <SearchBar filmsList={filmsList} />
         {this.renderFilmComponent()}
       </div>
     );
@@ -25,12 +35,11 @@ class App extends PureComponent {
 }
 
 const mapStateToProps = state => {
-  const {
-    films: { filmsList }
-  } = state;
+  const { filmsList, isLoading } = state.films;
 
   return {
-    filmsList
+    filmsList,
+    isLoading
   };
 };
 
