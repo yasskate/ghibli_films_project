@@ -29,6 +29,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "yme": "^3.9.0"
+    "enzyme": "^3.9.0"
   }
 }
