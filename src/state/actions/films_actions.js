@@ -5,7 +5,7 @@ export const getFilms = () => {
   return async dispatch => {
     try {
       const response = await Films.getFilms();
-      dispatch(setFilmsList(response.data));
+      await dispatch(setFilmsList(response.data));
       dispatch(isLoading(false));
     } catch (error) {
       console.log(error);
@@ -25,7 +25,8 @@ export const searchFilm = (filmsList, inputValue) => {
       film.title.toLocaleLowerCase().includes(inputValue)
     );
 
-    dispatch(setMatchedFilms(matchedFilms));
+    await dispatch(setMatchedFilms(matchedFilms));
+    await dispatch(isLoading(false));
   };
 };
 
