@@ -7,6 +7,6 @@ export const Loader = () => (
       src="https://i.imgur.com/h5PA99R.gif"
       alt="Totoro is loading the data..."
     />
-    <h1>Loading...</h1>
+    <h1 className="title">Loading...</h1>
   </div>
 );
