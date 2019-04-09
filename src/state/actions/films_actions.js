@@ -21,8 +21,13 @@ export const setFilmsList = filmsList => ({
 export const searchFilm = (filmsList, inputValue) => {
   return async dispatch => {
     dispatch(isLoading(true));
-    const matchedFilms = filmsList.filter(film =>
-      film.title.toLocaleLowerCase().includes(inputValue)
+
+    const matchedFilms = filmsList.filter(
+      film =>
+        film.title.toLocaleLowerCase().includes(inputValue) ||
+        film.director.toLocaleLowerCase().includes(inputValue) ||
+        film.producer.toLocaleLowerCase().includes(inputValue) ||
+        film.release_date.toLocaleLowerCase().includes(inputValue)
     );
 
     await dispatch(setMatchedFilms(matchedFilms));
