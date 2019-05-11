@@ -20,7 +20,7 @@ export const setFilmsList = filmsList => ({
 
 export const searchFilm = (filmsList, inputValue) => {
   return async dispatch => {
-    dispatch(isLoading(true));
+    await dispatch(isLoading(true));
 
     const matchedFilms = filmsList.filter(
       film =>
