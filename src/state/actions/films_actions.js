@@ -1,4 +1,9 @@
-import { SET_FILMS_LIST, SET_MATCHED_FILMS, IS_LOADING } from '../types/index';
+import {
+  SET_FILMS_LIST,
+  SET_MATCHED_FILMS,
+  IS_LOADING,
+  LOADING_COVER_IMAGES
+} from '../types/index';
 import Films from '../../services/Films';
 
 export const getFilms = () => {
@@ -6,16 +11,34 @@ export const getFilms = () => {
     try {
       const response = await Films.getFilms();
       await dispatch(setFilmsList(response.data));
-      dispatch(isLoading(false));
+      await dispatch(getFilmsImages(response.data));
+      await dispatch(isLoading(false));
     } catch (error) {
       console.log(error);
     }
   };
 };
 
-export const setFilmsList = filmsList => ({
-  type: SET_FILMS_LIST,
-  payload: filmsList
+export const getFilmsImages = filmsList => {
+  return async dispatch => {
+    const filmsListWithImages = [];
+
+    await filmsList.map(async film => {
+      const filmImageUrl = await Films.getFilmsCoverImages(film.title);
+      film.coverImage = filmImageUrl[0].url;
+      filmsListWithImages.push(film);
+
+      if (filmsListWithImages.length === filmsList.length) {
+        dispatch(loadingCoverImages(false));
+        dispatch(setFilmsList(filmsListWithImages));
+      }
+    });
+  };
+};
+
+const loadingCoverImages = state => ({
+  type: LOADING_COVER_IMAGES,
+  payload: state
 });
 
 export const searchFilm = (filmsList, inputValue) => {
@@ -34,6 +57,11 @@ export const searchFilm = (filmsList, inputValue) => {
     await dispatch(isLoading(false));
   };
 };
+
+export const setFilmsList = filmsList => ({
+  type: SET_FILMS_LIST,
+  payload: filmsList
+});
 
 export const setMatchedFilms = matchedFilmsList => ({
   type: SET_MATCHED_FILMS,
