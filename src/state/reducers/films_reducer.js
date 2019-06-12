@@ -1,7 +1,8 @@
 const INITIAL_STATE = {
   isLoading: true,
   filmsList: undefined,
-  matchedFilms: undefined
+  matchedFilms: undefined,
+  loadingCoverImages: true
 };
 
 const executeIfFunction = f => (typeof f === 'function' ? f() : f);
@@ -17,5 +18,6 @@ export default (state = INITIAL_STATE, action) =>
     SET_FILMS_LIST: () => ({ ...state, filmsList: action.payload }),
     SET_MATCHED_FILMS: () => ({ ...state, matchedFilms: action.payload }),
     IS_LOADING: () => ({ ...state, isLoading: action.payload }),
+    LOADING_COVER_IMAGES: () => ({ ...state, loadingCoverImages: action.payload }),
     default: () => ({ ...state })
   })(state)(action.type);
