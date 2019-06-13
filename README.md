@@ -43,6 +43,6 @@ Search Engine ID
 
 * Axios
 * Redux
-* Reac-Redux
+* React-Redux
 * Redux-Thunk
 * Bulma
