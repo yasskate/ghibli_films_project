@@ -21,16 +21,6 @@ The page will reload if you make edits.
 
 Launches the test runner in the interactive watch mode.
 
-## ENVIRONMENT VARIABLES
-
-```
-Google API KEY
-AIzaSyBFvsBrfV7UC34FgjYpoveslL9j6p3Gg8I
-
-Search Engine ID
-004566832713711953075:56aoigtc7gk
-```
-
 ## Tech Stack
 
 ### React
