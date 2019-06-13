@@ -35,14 +35,14 @@ Search Engine ID
 
 ### React
 
-React v16.8.5
-Node v10.1.0
-Yarn v1.16.0
+* React v16.8.5
+* Node v10.1.0
+* Yarn v1.16.0
 
 ### Development
 
-Axios
-Redux
-Reac-Redux
-Redux-Thunk
-Bulma
+* Axios
+* Redux
+* Reac-Redux
+* Redux-Thunk
+* Bulma
