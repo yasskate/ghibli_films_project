@@ -30,3 +30,19 @@ AIzaSyBFvsBrfV7UC34FgjYpoveslL9j6p3Gg8I
 Search Engine ID
 004566832713711953075:56aoigtc7gk
 ```
+
+## Tech Stack
+
+### React
+
+React v16.8.5
+Node v10.1.0
+Yarn v1.16.0
+
+### Development
+
+Axios
+Redux
+Reac-Redux
+Redux-Thunk
+Bulma
