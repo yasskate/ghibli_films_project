@@ -42,7 +42,7 @@ class Films extends PureComponent {
   };
 
   renderNoCoincidencesMessage = () => (
-    <div className="loader-containerfilm-cover-imagefilm-cover-image">
+    <div className="loader-container">
       <img
         src="https://i.imgur.com/h5zBDCH.gif"
         alt="Totoro didn't find films"
@@ -63,10 +63,7 @@ class Films extends PureComponent {
     if (loadingCoverImages) {
       return (
         <figure className="image is-3by4">
-          <img
-            src={images.loader}
-            alt="Loading..."
-          />
+          <img src={images.loader} alt="Loading..." />
         </figure>
       );
     }
