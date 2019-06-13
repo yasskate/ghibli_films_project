@@ -19,3 +19,14 @@ You will also see any lint errors in the console.
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.
+
+
+## ENVIRONMENT VARIABLES
+
+```
+Google API KEY
+AIzaSyBFvsBrfV7UC34FgjYpoveslL9j6p3Gg8I
+
+Search Engine ID
+004566832713711953075:56aoigtc7gk
+```

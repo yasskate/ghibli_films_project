@@ -17,6 +17,10 @@
   padding: 20px 30px;
 }
 
+.film-details-container > .top-description-container {
+  padding: 20px 20px;
+}
+
 .film-description {
   margin: 20px 0px 10px;
   text-align: justify;
