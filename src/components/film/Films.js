@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { images } from '../../assets/index';
 import './Films.css';
 
 class Films extends PureComponent {
@@ -9,7 +10,12 @@ class Films extends PureComponent {
 
   state = {
     filmsArray: [],
-    keyCounter: 1
+    keyCounter: 1,
+    isImageLoading: true
+  };
+
+  static defaultProps = {
+    loadingCoverImages: true
   };
 
   componentDidMount = () => {
@@ -36,7 +42,7 @@ class Films extends PureComponent {
   };
 
   renderNoCoincidencesMessage = () => (
-    <div className="loader-container">
+    <div className="loader-containerfilm-cover-imagefilm-cover-image">
       <img
         src="https://i.imgur.com/h5zBDCH.gif"
         alt="Totoro didn't find films"
@@ -52,15 +58,44 @@ class Films extends PureComponent {
     </div>
   );
 
+  getFilmImage = film => {
+    const { loadingCoverImages } = this.props;
+    if (loadingCoverImages) {
+      return (
+        <figure className="image is-3by4">
+          <img
+            src={images.loader}
+            alt="Loading..."
+          />
+        </figure>
+      );
+    }
+
+    return (
+      <figure className="image is-3by4">
+        <img src={film.coverImage} alt="Loading..." />
+      </figure>
+    );
+  };
+
   getFilmContent = film => (
     <div className="film-details-container message-body">
-      <h2>
-        <strong>Director:</strong> {film.director}
-      </h2>
-      <h2>
-        <strong>Producer:</strong> {film.producer}
-      </h2>
-      <p className="film-description content">{film.description}</p>
+      <div className="columns top-description-container">
+        <div className="column">{this.getFilmImage(film)}</div>
+        <div className="column">
+          <h2>
+            <strong>Director:</strong> {film.director}
+          </h2>
+          <h2>
+            <strong>Producer:</strong> {film.producer}
+          </h2>
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column">
+          <p className="film-description content">{film.description}</p>
+        </div>
+      </div>
     </div>
   );
 
@@ -90,22 +125,21 @@ class Films extends PureComponent {
     return this.renderFilmsChunks();
   };
 
-  render = () => {
-    return (
-      <section className="section is-mobile">{this.renderFilms()}</section>
-    );
-  };
+  render = () => (
+    <section className="section is-mobile">{this.renderFilms()}</section>
+  );
 }
 
 const mapStateToProps = state => {
   const {
-    films: { filmsList, matchedFilms, isLoading }
+    films: { filmsList, matchedFilms, isLoading, loadingCoverImages }
   } = state;
 
   return {
     filmsList,
     matchedFilms,
-    isLoading
+    isLoading,
+    loadingCoverImages
   };
 };
 
