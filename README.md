@@ -1,5 +1,7 @@
 # Ghibli Movies Project
 
+[https://ghibli-app.herokuapp.com/](https://ghibli-app.herokuapp.com/)
+
 ## Available Scripts
 
 In the project directory, you can run:
